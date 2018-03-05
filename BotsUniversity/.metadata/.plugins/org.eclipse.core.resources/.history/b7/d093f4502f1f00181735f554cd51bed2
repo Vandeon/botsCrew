@@ -1,0 +1,35 @@
+package com.entity;
+
+import java.awt.FontFormatException;
+import java.util.List;
+import java.util.Scanner;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
+import com.repository.LectorRepository;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("primary");
+		EntityManager manager = factory.createEntityManager();
+		
+		LectorRepository lectorRepository = new LectorRepository(manager);
+		Lector lector1 = new Lector();
+		lector1.setFirstName("Jakob");
+		lector1.setLastName("White");
+		lectorRepository.save(lector1);
+		
+//		Scanner sc = new Scanner(System.in);
+//		String str = sc.nextLine();
+		String str = new String("qwe");
+		List<Lector> list = (List<Lector>)manager.createQuery("select l from Lector l where l like :" + str).getResultList();
+		System.out.println(list.get(0));
+
+	}
+
+}
