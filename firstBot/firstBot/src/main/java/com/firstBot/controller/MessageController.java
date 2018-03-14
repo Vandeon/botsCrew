@@ -1,24 +1,35 @@
 package com.firstBot.controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.firstBot.content.ContentMaker;
+import com.firstBot.service.FilmService;
+import com.firstBot.service.GenreService;
+import com.firstBot.service.MessageService;
+import com.firstBots.model.IncommingMessage;
 
 @RestController
 public class MessageController {
 
-	@Value("${lgs.token.access}")
-	String accessToken;
+	@Autowired
+	private MessageService messageService;
+	@Autowired
+	private FilmService filmService;
+	@Autowired
+	private GenreService genreService;	
 	
 	@PostMapping
-	public void getMessage(@RequestParam(value="access_token") String access) {
-		if(access.equals(accessToken)) {
-			System.out.println("get");
-		}else {
-			System.out.println("Dont get");
-		}
-		System.out.println("Cutched");
+	public void getMessage(@RequestBody IncommingMessage message) {
+
+//		System.out.println(filmService.findOne(1));
+//		ContentMaker cm = new ContentMaker();
+//		cm.makeContent(filmService, genreService);
+		
+		messageService.getMessage(message);
+
 	}
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CheckController {
 
-	@Value("${lgs.token.secret}")
+	@Value("${secret}")
 	private String secret;
 
 	@GetMapping
