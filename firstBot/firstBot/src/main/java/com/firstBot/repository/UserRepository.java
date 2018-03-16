@@ -8,6 +8,4 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 
 	User findByMessengerUserId(String messengerUserId);
 	
-	
-	
 }

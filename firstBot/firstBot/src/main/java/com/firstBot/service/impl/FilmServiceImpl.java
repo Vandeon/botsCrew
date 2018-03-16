@@ -3,6 +3,7 @@ package com.firstBot.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.firstBot.entity.Film;
@@ -47,5 +48,9 @@ public class FilmServiceImpl implements FilmService{
 		return filmRepository.findByYear(year);
 	}
 	
-	
+	@Override
+	public List<Film> getOfferedFilms(String messengerUserId) {
+		return filmRepository.getOfferedFilms(messengerUserId);
+	}
+
 }

@@ -16,4 +16,6 @@ public interface UserService {
 
 	User findByMessengerUserId(String messengerUserId);
 	
+	String getUserUrl(User user);
+	
 }

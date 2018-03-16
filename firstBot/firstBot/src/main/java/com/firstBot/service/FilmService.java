@@ -19,4 +19,6 @@ public interface FilmService {
 	
 	List<Film> findByYear(int year);
 	
+	List<Film> getOfferedFilms(String messengerUserId);
+	
 }

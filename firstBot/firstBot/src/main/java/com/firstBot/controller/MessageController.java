@@ -19,17 +19,17 @@ public class MessageController {
 	@Autowired
 	private FilmService filmService;
 	@Autowired
-	private GenreService genreService;	
+	private GenreService genreService;
 	
 	@PostMapping
 	public void getMessage(@RequestBody IncommingMessage message) {
-
-//		System.out.println(filmService.findOne(1));
 //		ContentMaker cm = new ContentMaker();
 //		cm.makeContent(filmService, genreService);
-		
 		messageService.getMessage(message);
-
 	}
 
 }
+
+
+//ContentMaker cm = new ContentMaker();
+//cm.makeContent(filmService, genreService);

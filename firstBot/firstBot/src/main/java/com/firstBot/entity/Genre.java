@@ -23,21 +23,21 @@ public class Genre {
 	@ManyToMany
 	@JoinTable(name="film_genre", joinColumns = @JoinColumn(name="id_genre"),
 	inverseJoinColumns = @JoinColumn(name="id_film"))
-	private List<Film> film = new ArrayList<Film>();
+	private List<Film> films = new ArrayList<Film>();
 
 	@ManyToMany
 	@JoinTable(name="user_genre", joinColumns = @JoinColumn(name="id_genre"),
 	inverseJoinColumns = @JoinColumn(name="id_user"))
-	private List<User> genres = new ArrayList<User>();
+	private List<User> users = new ArrayList<User>();
 	
 	public Genre() {}
 
-	public Genre(int id, String name, List<Film> film, List<User> genres) {
+	public Genre(int id, String name, List<Film> films, List<User> users) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.film = film;
-		this.genres = genres;
+		this.films = films;
+		this.users = users;
 	}
 
 	public int getId() {
@@ -56,25 +56,25 @@ public class Genre {
 		this.name = name;
 	}
 
-	public List<Film> getFilm() {
-		return film;
+	public List<Film> getFilms() {
+		return films;
 	}
 
-	public void setFilm(List<Film> film) {
-		this.film = film;
+	public void setFilms(List<Film> films) {
+		this.films = films;
 	}
 
-	public List<User> getGenres() {
-		return genres;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setGenres(List<User> genres) {
-		this.genres = genres;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Override
 	public String toString() {
-		return "Genre [id=" + id + ", name=" + name + ", genres=" + genres + "]";
+		return "Genre [id=" + id + ", name=" + name+ "]";
 	}
 
 	

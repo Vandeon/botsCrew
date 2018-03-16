@@ -3,6 +3,7 @@ package com.firstBot.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Film {
@@ -22,6 +24,11 @@ public class Film {
 	
 	private String filmUrl;
 
+	private String trailerUrl;
+	
+	@Column(length=10000)
+	private String description;
+	
 	@ManyToMany
 	@JoinTable(name="film_genre", joinColumns = @JoinColumn(name="id_film"),
 	inverseJoinColumns = @JoinColumn(name="id_genre"))
@@ -29,15 +36,22 @@ public class Film {
 	
 	private int year;
 
+	@OneToMany(mappedBy="film")
+	private List<Comment> comments;
+	
 	public Film() {}
 	
-	public Film(int id, String name, String filmUrl, List<Genre> genre, int year) {
+	public Film(int id, String name, String filmUrl, String trailerUrl, String description, List<Genre> genre, int year,
+			List<Comment> comments) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.filmUrl = filmUrl;
+		this.trailerUrl = trailerUrl;
+		this.description = description;
 		this.genre = genre;
 		this.year = year;
+		this.comments = comments;
 	}
 
 	public int getId() {
@@ -64,6 +78,22 @@ public class Film {
 		this.filmUrl = filmUrl;
 	}
 
+	public String getTrailerUrl() {
+		return trailerUrl;
+	}
+
+	public void setTrailerUrl(String trailerUrl) {
+		this.trailerUrl = trailerUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public List<Genre> getGenre() {
 		return genre;
 	}
@@ -80,9 +110,17 @@ public class Film {
 		this.year = year;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", name=" + name + ", filmUrl=" + filmUrl + ", genre=" + genre + ", year=" + year
+		return "Film [id=" + id + ", name=" + name + ", genre=" + genre + ", year=" + year
 				+ "]";
 	}
 
